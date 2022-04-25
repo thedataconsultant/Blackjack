@@ -81,6 +81,10 @@ function resetGame() {
 }
 
 function endGamePlayer() {
+    if (dealer.score === 21 && player.score == 21) {
+      document.getElementById("message-board").innerHTML = "You tied! " + "<br>" + "click New Game to play again";
+      resetGame();
+    }
     if (player.score === 21) {
         document.getElementById("message-board").innerHTML = "You win! You got blackjack." + "<br>" + "click New Game to play again";
         resetGame();
@@ -151,9 +155,7 @@ function hit() {
     document.getElementById("player-cards").innerHTML = "Player Cards: " + JSON.stringify(player.cards);
     document.getElementById("player-score").innerHTML = "Player Score: " + player.score;
     numCardsPulled += 1;
-    if (numCardsPulled > 4) {
-        endGamePlayer();
-    }
+    endGamePlayer();
 }
 
 function stand() {
